@@ -3,7 +3,7 @@ pragma solidity >=0.7.0 <0.9.0;
 contract PiggyBank {
     
     mapping(address => uint) balances;
-    address  public  owner;
+    address public owner;
     
     constructor() {
         owner = msg.sender;

@@ -12,3 +12,6 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+
+# File content metamask mnemoic and Infura project id
+secrets.json

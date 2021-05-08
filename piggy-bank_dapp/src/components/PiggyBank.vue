@@ -1,9 +1,15 @@
 <template>
-  <div class="main_app_div">
-    <div><hello-metamask></hello-metamask></div>
-    <div><deposit></deposit></div>
-    <div><withdraw></withdraw></div>
-    <div><piggy-balance></piggy-balance></div>
+  <div class="main_div">
+    <div class="container_one">
+      <div><hello-metamask></hello-metamask></div>
+      <div><deposit></deposit></div>
+      <div><withdraw></withdraw></div>
+      <div><piggy-balance></piggy-balance></div>
+    </div>
+
+    <div>
+      <contact-us></contact-us>
+    </div>
   </div>
 </template>
 
@@ -12,6 +18,7 @@ import HelloMetamask from '@/components/HelloMetamask.vue'
 import Deposit from '@/components/Deposit.vue'
 import Withdraw from '@/components/Withdraw.vue'
 import PiggyBalance from '@/components/PiggyBalance.vue'
+import ContactUs from '@/components/ContactUs.vue'
 
 export default {
   name: 'piggy-bank_dapp',
@@ -19,7 +26,8 @@ export default {
     HelloMetamask,
     Deposit,
     Withdraw,
-    PiggyBalance
+    PiggyBalance,
+    ContactUs
   },
   beforeCreate () {
     console.log('registerWeb3 Action dispatched from PiggyBank.vue')
@@ -33,7 +41,12 @@ export default {
 </script>
 
 <style scoped>
-  .main_app_div {
+  .main_div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .container_one {
     display: flex;
     justify-content: space-around;
     align-items: center;

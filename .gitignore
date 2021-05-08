@@ -23,3 +23,5 @@ Dockerfile.prod
 
 # Ignore vue prod folder
 piggy-bank_dapp/dist
+
+.netlify

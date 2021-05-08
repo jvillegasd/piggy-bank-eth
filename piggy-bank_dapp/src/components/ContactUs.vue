@@ -31,7 +31,6 @@ export default {
           email: this.userEmail,
           message: this.userMessage
         })
-        
         console.log(response)
         window.alert('Mail sended')
       } catch (error) {

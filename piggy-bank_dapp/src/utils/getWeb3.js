@@ -19,7 +19,7 @@ let getWeb3 = async () => {
         return web3;
       },
       networkId,
-      balance,
+      balance: parseInt(balance, 10),
       coinbase: accounts[0]
     };
   } else {

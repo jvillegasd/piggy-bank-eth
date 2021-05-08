@@ -24,15 +24,14 @@ contract PiggyBank {
         return balances[msg.sender];
     }
     
-    function withdraw(uint withdrawAmount) public onlyOwner returns (uint remainingBal) {
+    function withdraw() public onlyOwner returns (bool) {
         uint currentAmount = balances[owner];
-        if (withdrawAmount <= currentAmount) {
-            (bool sent, bytes memory data) = owner.call{value: withdrawAmount}("");
-            require(sent, "Failed to send Ether");
-            balances[owner] -= withdrawAmount;
-            
-        }
-        return balances[owner];
+        
+        (bool sent, bytes memory data) = owner.call{value: currentAmount}("");
+        require(sent, "Failed to send Ether");
+        
+        balances[owner] = 0;
+        return true;
     }
     
     function balance() public view returns (uint) {

@@ -2,13 +2,13 @@
   <div class="main_div">
     <div class="container_one">
       <div><hello-metamask></hello-metamask></div>
-      <div><deposit></deposit></div>
-      <div><withdraw></withdraw></div>
-      <div><piggy-balance></piggy-balance></div>
+      <div v-if="web3.isInjected"><deposit></deposit></div>
+      <div v-if="web3.isInjected"><withdraw></withdraw></div>
+      <div v-if="web3.isInjected"><piggy-balance></piggy-balance></div>
     </div>
 
     <div class="container_two">
-      <contact-us></contact-us>
+      <contact-us v-if="web3.isInjected"></contact-us>
     </div>
   </div>
 </template>
@@ -36,6 +36,11 @@ export default {
   mounted () {
     console.log('getSmartContract Action dispatched from PiggyBank.vue')
     this.$store.dispatch('getSmartContract')
+  },
+  computed: {
+    web3 () {
+      return this.$store.state.web3
+    }
   }
 }
 </script>

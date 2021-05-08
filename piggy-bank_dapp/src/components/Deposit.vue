@@ -1,7 +1,7 @@
 <template>
   <div class="deposit_card">
     <label class="deposit_label" for="deposit">Deposit amount</label>
-    <input class="deposit_input" type="text" id="deposit" name="deposit" v-model="amount" placeholder="An ether amount">
+    <input class="deposit_input" @keypress="onlyNumber" type="text" id="deposit" name="deposit" v-model="amount" placeholder="An ether amount">
     <button class="deposit_bt" @click=depositEther>Deposit</button>
   </div>
 </template>
@@ -21,11 +21,22 @@ export default {
         return
       }
 
-      const { web3, contractInstance } = this.$store.state
-      contractInstance.methods.deposit().send({
-        from: web3.coinbase,
-        value: web3.web3Instance().utils.toWei(this.amount.toString(), 'ether')
-      })
+      try {
+        const { web3, contractInstance } = this.$store.state
+        contractInstance.methods.deposit().send({
+          from: web3.coinbase,
+          value: web3.web3Instance().utils.toWei(this.amount.toString(), 'ether')
+        })
+      } catch (error) {
+        console.log('Error at deposit component', error)
+        window.alert('Error ocurred while sending ethers to piggy bank')
+      }
+    },
+    onlyNumber ($event) {
+      let keyCode = ($event.keyCode ? $event.keyCode : $event.which)
+      if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) { // 46 is dot
+        $event.preventDefault()
+      }
     }
   }
 }

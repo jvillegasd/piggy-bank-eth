@@ -10,10 +10,15 @@ export default {
   name: 'withdraw',
   methods: {
     withdrawAllEther () {
-      const { web3, contractInstance } = this.$store.state
-      contractInstance.methods.withdraw().send({
-        from: web3.coinbase
-      })
+      try {
+        const { web3, contractInstance } = this.$store.state
+        contractInstance.methods.withdraw().send({
+          from: web3.coinbase
+        })
+      } catch (error) {
+        console.log('Error at withdraw component', error)
+        window.alert('Error ocurred while retrieving ethers from piggy bank')
+      }
     }
   }
 }

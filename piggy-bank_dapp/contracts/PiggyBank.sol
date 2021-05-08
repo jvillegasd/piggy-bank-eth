@@ -6,8 +6,7 @@ contract PiggyBank {
     mapping(address => uint) balances;
     address payable public owner;
     
-    uint256 wa;
-    uint256 bb;
+    bool locked = false;
     
     constructor() {
         owner = payable(msg.sender);
@@ -25,12 +24,16 @@ contract PiggyBank {
     }
     
     function withdraw() public onlyOwner returns (bool) {
+        require(!locked, "Reentrant call detected!");
+        locked = true;
+        
         uint currentAmount = balances[owner];
-        
         (bool sent, bytes memory data) = owner.call{value: currentAmount}("");
-        require(sent, "Failed to send Ether");
         
+        require(sent, "Failed to send Ether");
         balances[owner] = 0;
+        locked = false;
+        
         return true;
     }
     

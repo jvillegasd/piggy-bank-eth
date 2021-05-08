@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-const address = '0x15D21dfFDed39Fd3B4de4384eBb0b23Cb67BE7F7';
+const address = '0x9cE308E7eEA7635895cf80057584b1De0f83ff49';
 const ABI = [
 	{
 		"inputs": [],

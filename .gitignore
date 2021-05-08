@@ -16,3 +16,7 @@ yarn-error.log*
 # File content metamask mnemoic and Infura project id
 secrets.json
 .env
+
+# Production docker files
+docker-compose.prod.yml
+Dockerfile.prod

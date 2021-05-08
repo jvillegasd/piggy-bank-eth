@@ -1,14 +1,13 @@
 version: '3.7'
 
 services:
-  now_playing_dev:
+  piggy_api:
     container_name: piggy_api
-    build: ./
+    build: ./api/
     restart: always
-    env_file:
-      - ./api/.env
+    env_file: .env
     ports:
-      - ${NODE_PORT}:${NODE_PORT}
+      - ${NODEJS_PORT}:${NODEJS_PORT}
     volumes:
       - ./api/:/app
       - node_modules:/app/node_modules

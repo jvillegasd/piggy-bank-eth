@@ -1,25 +1,44 @@
 <template>
   <div class="contact_card">
     <label class="contact_label" >Contact us</label>
-    <form class="email_form">
+    <form class="email_form" @submit.prevent>
       <label class="email_label" for="email">Email:</label>
       <input type="text" id="email" name="email" v-model="userEmail">
 
       <label class="message_label" for="message">Message:</label>
-      <textarea name="message" id="message" rows="10" cols="50"></textarea>
+      <textarea name="message" id="message" rows="10" cols="50" v-model="userMessage"></textarea>
 
-      <button class="submit_bt" >Send</button>
+      <button class="submit_bt" @click="sendEmail">Send</button>
     </form>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'contact-us',
   data () {
     return {
       userEmail: null,
-      message: null
+      userMessage: null
+    }
+  },
+  methods: {
+    async sendEmail () {
+      try {
+        console.log('hi', this.userEmail, this.userMessage)
+        const response = await axios.post('http://localhost:2601/send', {
+          email: this.userEmail,
+          message: this.userMessage
+        })
+
+        console.log(response, 'hi x2')
+        window.alert('Mail sended')
+      } catch (error) {
+        window.alert('Error sending email')
+        console.log(error)
+      }
     }
   }
 }

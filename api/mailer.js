@@ -1,7 +1,7 @@
 let nodeMailer = require("nodemailer");
 
-const FROM_EMAIL = process.env.MAILER_EMAIL;
-const FROM_PASSWORD = process.env.MAILER_PASSWORD;
+const FROM_EMAIL = process.env.FROM_EMAIL;
+const FROM_PASSWORD = process.env.FROM_PASSWORD;
 
 const transporter = nodeMailer.createTransport({
   maxConnection: 3,
@@ -23,15 +23,10 @@ module.exports.sendMail = async (to, subject, body) => {
     text: body
   };
 
-  try {
-    let r = await new Promise((resolve, reject) => {
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) return reject(error);
-        return resolve(info);
-      });
+  await new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) return reject(error);
+      return resolve(info);
     });
-    console.log(r);
-  } catch (error) {
-    console.log("error sending email", error);
-  }
+  });
 };

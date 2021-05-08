@@ -66,4 +66,10 @@ export default {
   textarea {
     resize: none;
   }
+  input, textarea {
+    border-radius: 7px;
+    border-color: gray;
+    border-style: solid;
+    outline: none;
+  }
 </style>

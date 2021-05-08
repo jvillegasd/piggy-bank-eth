@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <label for="name">Deposit amount - {{ amount }}</label>
-    <input type="text" id="name" name="name" v-model="amount">
-    <button @click=depositEther>Deposit</button>
+  <div class="deposit_card">
+    <label class="deposit_label" for="deposit">Deposit amount</label>
+    <input class="deposit_input" type="text" id="deposit" name="deposit" v-model="amount" placeholder="An ether amount">
+    <button class="deposit_bt" @click=depositEther>Deposit</button>
   </div>
 </template>
 
@@ -11,26 +11,61 @@ export default {
   name: 'deposit',
   data () {
     return {
-      amount: 0
+      amount: null
     }
   },
   methods: {
     depositEther () {
-      console.log(this.amount)
+      if (this.amount === undefined || this.amount === null) {
+        window.alert('Digit a valid Ether amount')
+        return
+      }
+
       const { web3, contractInstance } = this.$store.state
       contractInstance.methods.deposit().send({
         from: web3.coinbase,
         value: web3.web3Instance().utils.toWei(this.amount.toString(), 'ether')
       })
     }
-  },
-  mounted () {
-    console.log('dispatching getSmartContract')
-    this.$store.dispatch('getSmartContract')
   }
 }
 </script>
 
-<style>
+<style scoped>
+  .deposit_card {
+    border-radius: 15px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    height: 100px;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .deposit_bt {
+    background-color: rgba(0, 94, 238, 0.8);
+    outline: none;
+    border: none;
+    width: 75px;
+    height: 30px;
+    color: white;
+    border-radius: 10px;
+  }
+  .deposit_bt:hover {
+    background-color: white;
+    color: rgba(0, 94, 238, 0.8);
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgba(0, 94, 238, 0.8);
+  }
+  .deposit_label {
+    font-weight: bold;
+  }
+  .deposit_input {
+    border-radius: 7px;
+    border-color: gray;
+    border-style: solid;
+    outline: none;
+  }
 </style>

@@ -21,10 +21,9 @@ contract PiggyBank {
     }
     
     function withdraw(uint withdrawAmount) public onlyOwner returns (uint remainingBal) {
-        if (withdrawAmount <= balances[msg.sender]) {
-            balances[msg.sender] -= withdrawAmount;
-            (bool success, ) = msg.sender.call{value: withdrawAmount}("");
-            require(success, "Transfer failed.");
+        if (withdrawAmount <= balances[owner]) {
+            balances[owner] -= withdrawAmount;
+            payable(owner).transfer(withdrawAmount);
         }
         return balances[msg.sender];
     }

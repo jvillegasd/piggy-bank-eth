@@ -7,7 +7,7 @@
       <div><piggy-balance></piggy-balance></div>
     </div>
 
-    <div>
+    <div class="container_two">
       <contact-us></contact-us>
     </div>
   </div>
@@ -45,11 +45,16 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
   }
   .container_one {
     display: flex;
+    width: 100%;
     justify-content: space-around;
     align-items: center;
     flex-direction: row;
+  }
+  .container_two {
+    margin-top: 30px;
   }
 </style>

@@ -9,8 +9,8 @@ export default {
   name: 'piggy-bank_dapp',
   components: { HelloMetamask },
   beforeCreate () {
-    console.log('registerWeb3 Action dispatched from PiggyBank.vue');
-    this.$store.dispatch('registerWeb3');
+    console.log('registerWeb3 Action dispatched from PiggyBank.vue')
+    this.$store.dispatch('registerWeb3')
   }
 }
 </script>

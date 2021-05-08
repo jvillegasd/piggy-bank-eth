@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import Vue from 'vue';
 import Vuex from 'vuex';
 import state from './state.js';
@@ -23,15 +25,16 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    registerWeb3 ({ commit }) {
+    async registerWeb3 ({ commit }) {
       console.log('registerWeb3 Action being executed');
-      
-      getWeb3.then(result => {
+      try {
+        let result = await getWeb3();
+
         console.log('commiting result to registerWeb3Instance mutation');
         commit('registerWeb3Instance', result);
-      }).catch(err => {
-        console.log('error in action registerWeb3', err);
-      });
+      } catch (error) {
+        console.log('error in action registerWeb3', error);
+      }
     }
   }
 });

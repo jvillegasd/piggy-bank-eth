@@ -8,6 +8,6 @@ let state = {
     error: null
   },
   contractInstance: null
-};
+}
 
-export default state;
+export default state

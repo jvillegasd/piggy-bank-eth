@@ -1,12 +1,16 @@
 pragma solidity >=0.7.0 <0.9.0;
 
+
 contract PiggyBank {
     
     mapping(address => uint) balances;
-    address public owner;
+    address payable public owner;
+    
+    uint256 wa;
+    uint256 bb;
     
     constructor() {
-        owner = msg.sender;
+        owner = payable(msg.sender);
     }
     
     modifier onlyOwner() {
@@ -21,11 +25,14 @@ contract PiggyBank {
     }
     
     function withdraw(uint withdrawAmount) public onlyOwner returns (uint remainingBal) {
-        if (withdrawAmount <= balances[owner]) {
+        uint currentAmount = balances[owner];
+        if (withdrawAmount <= currentAmount) {
+            (bool sent, bytes memory data) = owner.call{value: withdrawAmount}("");
+            require(sent, "Failed to send Ether");
             balances[owner] -= withdrawAmount;
-            payable(owner).transfer(withdrawAmount);
+            
         }
-        return balances[msg.sender];
+        return balances[owner];
     }
     
     function balance() public view returns (uint) {
@@ -34,5 +41,6 @@ contract PiggyBank {
     
     event LogDepositMade(address indexed accountAddress, uint amount);
     
+    fallback() external payable {}
     receive() external payable {}
 }

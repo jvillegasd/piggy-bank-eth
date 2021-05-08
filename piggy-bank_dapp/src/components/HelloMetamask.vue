@@ -4,7 +4,7 @@
     <p><b>Connection status:</b> {{ web3.isInjected }}</p>
     <p><b>Network:</b> {{ web3.networkId }}</p>
     <p><b>Account:</b> {{ web3.coinbase }}</p>
-    <p><b>Account balance:</b> {{ web3.balance }}</p>
+    <p><b>Account balance:</b> {{ web3.balance }} <b>ETH</b></p>
   </div>
 </template>
 

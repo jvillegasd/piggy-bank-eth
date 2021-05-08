@@ -13,16 +13,17 @@ let getWeb3 = async () => {
     const networkId = await web3.eth.net.getId();
     const accounts = await web3.eth.getAccounts();
     const injectedWeb3 = await web3.eth.net.isListening();
-    const balance = await web3.eth.getBalance(accounts[0]);
+    let balance = await web3.eth.getBalance(accounts[0]);
     const { contractInstance } = store.state;
     
     if (contractInstance) {
       piggyBalance = await contractInstance.methods.balance().call({
         from: accounts[0]
       });
-      piggyBalance = parseInt(piggyBalance, 10);
-      console.log(piggyBalance)
+      piggyBalance = await web3.utils.fromWei(piggyBalance.toString(), 'ether');
     }
+
+    balance = await web3.utils.fromWei(balance.toString(), 'ether'); 
 
     return {
       injectedWeb3,
@@ -30,7 +31,7 @@ let getWeb3 = async () => {
         return web3;
       },
       networkId,
-      balance: parseInt(balance, 10),
+      balance,
       coinbase: accounts[0],
       piggyBalance
     };

@@ -20,7 +20,7 @@ export const store = new Vuex.Store({
 
       web3Copy.coinbase = result.coinbase;
       web3Copy.networkId = result.networkId;
-      web3Copy.balance = parseInt(result.balance, 10);
+      web3Copy.balance = result.balance;
       web3Copy.isInjected = result.injectedWeb3;
       web3Copy.web3Instance = result.web3;
       web3Copy.piggyBalance = result.piggyBalance;
@@ -30,7 +30,7 @@ export const store = new Vuex.Store({
     pollWeb3Instance (state, payload) {
       console.log('pollWeb3Instance being executed');
       state.web3.coinbase = payload.coinbase;
-      state.web3.balance = parseInt(payload.balance, 10);
+      state.web3.balance = payload.balance;
       state.web3.piggyBalance = payload.piggyBalance;
     },
     getSmartContractInstance (state, payload) {

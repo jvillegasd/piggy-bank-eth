@@ -1,7 +1,7 @@
 <template>
   <div class="pbalance_card">
     <label class="pbalance_label" for="pbalance">Piggy balance</label>
-    <p id="pbalance">{{ piggyBalance }}</p>
+    <p id="pbalance">{{ piggyBalance }} <b>ETH</b></p>
   </div>
 </template>
 

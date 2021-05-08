@@ -1,6 +1,7 @@
 /* eslint-disable */
 
 import Web3 from 'web3';
+import { store } from '../store';
 
 let getWeb3 = async () => {
   let metamaskWeb3 = window.ethereum;
@@ -8,10 +9,20 @@ let getWeb3 = async () => {
   if (typeof metamaskWeb3 !== 'undefined') {
     const web3 = new Web3(metamaskWeb3);
 
+    let piggyBalance = null;
     const networkId = await web3.eth.net.getId();
     const accounts = await web3.eth.getAccounts();
     const injectedWeb3 = await web3.eth.net.isListening();
     const balance = await web3.eth.getBalance(accounts[0]);
+    const { contractInstance } = store.state;
+    
+    if (contractInstance) {
+      piggyBalance = await contractInstance.methods.balance().call({
+        from: accounts[0]
+      });
+      piggyBalance = parseInt(piggyBalance, 10);
+      console.log(piggyBalance)
+    }
 
     return {
       injectedWeb3,
@@ -20,7 +31,8 @@ let getWeb3 = async () => {
       },
       networkId,
       balance: parseInt(balance, 10),
-      coinbase: accounts[0]
+      coinbase: accounts[0],
+      piggyBalance
     };
   } else {
     throw new Error('Unable to connect to Metamask');

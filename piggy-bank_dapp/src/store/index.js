@@ -23,6 +23,7 @@ export const store = new Vuex.Store({
       web3Copy.balance = parseInt(result.balance, 10);
       web3Copy.isInjected = result.injectedWeb3;
       web3Copy.web3Instance = result.web3;
+      web3Copy.piggyBalance = result.piggyBalance;
       state.web3 = web3Copy;
       pollWeb3();
     },

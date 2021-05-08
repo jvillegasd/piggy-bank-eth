@@ -1,28 +1,17 @@
 <template>
   <div class="withdraw_card">
-    <label class="withdraw_label" for="withdraw">Withdraw amount</label>
-    <input class="withdraw_input" type="text" id="withdraw" name="withdraw" v-model="withdrawAmount" placeholder="An ether amount">
-    <button class="withdraw_bt" @click=withdrawEther>Withdraw</button>
+    <label class="withdraw_label">Withdraw all funds</label>
+    <button class="withdraw_bt" @click=withdrawAllEther>Withdraw</button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'withdraw',
-  data () {
-    return {
-      withdrawAmount: null
-    }
-  },
   methods: {
-    withdrawEther () {
-      if (this.withdrawAmount === undefined || this.withdrawAmount === null) {
-        window.alert('Digit a valid Ether amount')
-        return
-      }
-
+    withdrawAllEther () {
       const { web3, contractInstance } = this.$store.state
-      contractInstance.methods.withdraw(this.withdrawAmount).send({
+      contractInstance.methods.withdraw().send({
         from: web3.coinbase
       })
     }
@@ -43,7 +32,7 @@ export default {
     align-items: center;
   }
   .withdraw_bt {
-    background-color: rgba(0, 94, 238, 0.8);
+    background-color: rgba(255, 0, 0, 0.8);
     outline: none;
     border: none;
     width: 75px;
@@ -53,10 +42,10 @@ export default {
   }
   .withdraw_bt:hover {
     background-color: white;
-    color: rgba(0, 94, 238, 0.8);
+    color: rgba(255, 0, 0, 0.8);
     border-style: solid;
     border-width: 2px;
-    border-color: rgba(0, 94, 238, 0.8);
+    border-color: rgba(255, 0, 0, 0.8);
   }
   .withdraw_label {
     font-weight: bold;

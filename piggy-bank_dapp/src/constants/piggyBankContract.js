@@ -1,20 +1,7 @@
 /* eslint-disable */
 
-const address = '0x7F6F2EA6015433581d5AfF1F6eff13793703d754';
+const address = '0x15D21dfFDed39Fd3B4de4384eBb0b23Cb67BE7F7';
 const ABI = [
-	{
-		"inputs": [],
-		"name": "deposit",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "payable",
-		"type": "function"
-	},
 	{
 		"inputs": [],
 		"stateMutability": "nonpayable",
@@ -44,29 +31,6 @@ const ABI = [
 		"type": "fallback"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "withdrawAmount",
-				"type": "uint256"
-			}
-		],
-		"name": "withdraw",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "remainingBal",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"stateMutability": "payable",
-		"type": "receive"
-	},
-	{
 		"inputs": [],
 		"name": "balance",
 		"outputs": [
@@ -81,6 +45,19 @@ const ABI = [
 	},
 	{
 		"inputs": [],
+		"name": "deposit",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "owner",
 		"outputs": [
 			{
@@ -91,6 +68,23 @@ const ABI = [
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "withdraw",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "receive"
 	}
 ]
 

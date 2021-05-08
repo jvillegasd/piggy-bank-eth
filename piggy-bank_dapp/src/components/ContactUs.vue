@@ -27,13 +27,12 @@ export default {
   methods: {
     async sendEmail () {
       try {
-        console.log('hi', this.userEmail, this.userMessage)
         const response = await axios.post('https://piggy.jvillegasd.duckdns.org/send', {
           email: this.userEmail,
           message: this.userMessage
         })
-
-        console.log(response, 'hi x2')
+        
+        console.log(response)
         window.alert('Mail sended')
       } catch (error) {
         window.alert('Error sending email')

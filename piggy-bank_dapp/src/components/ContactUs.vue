@@ -28,7 +28,7 @@ export default {
     async sendEmail () {
       try {
         console.log('hi', this.userEmail, this.userMessage)
-        const response = await axios.post('http://localhost:2601/send', {
+        const response = await axios.post('https://piggy.jvillegasd.duckdns.org/send', {
           email: this.userEmail,
           message: this.userMessage
         })

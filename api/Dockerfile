@@ -10,4 +10,4 @@ RUN npm install --quiet --no-optional
 
 EXPOSE ${NODEJS_PORT}
 
-CMD nodemon server.js
+CMD nodemon index.js

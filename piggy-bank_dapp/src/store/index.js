@@ -30,6 +30,7 @@ export const store = new Vuex.Store({
       console.log('pollWeb3Instance being executed');
       state.web3.coinbase = payload.coinbase;
       state.web3.balance = parseInt(payload.balance, 10);
+      state.web3.piggyBalance = payload.piggyBalance;
     },
     getSmartContractInstance (state, payload) {
       console.log('getSmartContractInstance being executed', payload);

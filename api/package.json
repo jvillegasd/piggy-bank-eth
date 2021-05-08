@@ -9,7 +9,9 @@
   "author": "Johnny Villegas",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^9.0.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nodemailer": "^6.6.0"
   }
 }

@@ -5,7 +5,7 @@
       <label class="email_label" for="email">Email:</label>
       <input type="text" id="email" name="email" v-model="userEmail">
 
-      <label class="message_label" for="message">Subject:</label>
+      <label class="message_label" for="message">Message:</label>
       <textarea name="message" id="message" rows="10" cols="50"></textarea>
 
       <button class="submit_bt" >Send</button>
